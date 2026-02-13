@@ -1,9 +1,10 @@
 // ============================================
 // IMPORTS
 // ============================================
-const express = require('express');
-const dotenv = require('dotenv');
-const connectDB = require('./config/database');
+// Branche A : Serveur Express principal
+const express = require("express");
+const dotenv = require("dotenv");
+const connectDB = require("./config/database");
 
 // ============================================
 // CONFIGURATION
@@ -12,17 +13,17 @@ const connectDB = require('./config/database');
 // Charger les variables d'environnement depuis . env
 dotenv.config();
 
-// Connexion à la base de données MongoDB
+// Connexion ï¿½ la base de donnï¿½es MongoDB
 connectDB();
 
-// Créer l'application Express
+// Crï¿½er l'application Express
 const app = express();
 
 // ============================================
 // MIDDLEWARES
 // ============================================
 
-// Middleware pour parser le JSON dans les requêtes
+// Middleware pour parser le JSON dans les requï¿½tes
 // Sans cela, req.body serait undefined
 app.use(express.json());
 
@@ -31,50 +32,49 @@ app.use(express.json());
 // ============================================
 
 // Route d'accueil - pour tester que le serveur fonctionne
-app.get('/', (req, res) => {
-    res.json({
-        message: '?? Bienvenue sur l\'API de gestion des étudiants! ',
-        version: '1.0.0',
-        endpoints: {
-            listeEtudiants: 'GET /api/etudiants',
-            creerEtudiant: 'POST /api/etudiants',
-            voirEtudiant: 'GET /api/etudiants/:id',
-            modifierEtudiant: 'PUT /api/etudiants/:id',
-            supprimerEtudiant: 'DELETE /api/etudiants/: id',
-            parFiliere: 'GET /api/etudiants/filiere/: filiere'
-        }
-    });
+app.get("/", (req, res) => {
+  res.json({
+    message: "?? Bienvenue sur l'API de gestion des ï¿½tudiants! ",
+    version: "1.0.0",
+    endpoints: {
+      listeEtudiants: "GET /api/etudiants",
+      creerEtudiant: "POST /api/etudiants",
+      voirEtudiant: "GET /api/etudiants/:id",
+      modifierEtudiant: "PUT /api/etudiants/:id",
+      supprimerEtudiant: "DELETE /api/etudiants/: id",
+      parFiliere: "GET /api/etudiants/filiere/: filiere",
+    },
+  });
 });
 
-// Monter les routes des étudiants sur /api/etudiants
-app.use('/api/etudiants', require('./routes/etudiantRoutes'));
+// Monter les routes des ï¿½tudiants sur /api/etudiants
+app.use("/api/etudiants", require("./routes/etudiantRoutes"));
 
 // ============================================
 // GESTION DES ERREURS
 // ============================================
 
-// Route 404 pour les URLs non trouvées
+// Route 404 pour les URLs non trouvï¿½es
 app.use((req, res) => {
-    res.status(404).json({
-        success: false,
-        message: `Route ${req.originalUrl} non trouvée`
-    });
+  res.status(404).json({
+    success: false,
+    message: `Route ${req.originalUrl} non trouvï¿½e`,
+  });
 });
 
 // ============================================
-// DÉMARRAGE DU SERVEUR
+// Dï¿½MARRAGE DU SERVEUR
 // ============================================
 
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-    console.log(`
+  console.log(`
     +--------------------------------------------+
-    ¦   ?? Serveur démarré avec succès!          ¦
-    ¦--------------------------------------------¦
-    ¦   ?? URL: http://localhost:${PORT}             ¦
-    ¦   ?? API: http://localhost:${PORT}/api/etudiants¦
+    ï¿½   ?? Serveur dï¿½marrï¿½ avec succï¿½s!          ï¿½
+    ï¿½--------------------------------------------ï¿½
+    ï¿½   ?? URL: http://localhost:${PORT}             ï¿½
+    ï¿½   ?? API: http://localhost:${PORT}/api/etudiantsï¿½
     +--------------------------------------------+
     `);
 });
-
