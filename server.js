@@ -1,7 +1,11 @@
 // ============================================
 // IMPORTS
 // ============================================
+<<<<<<< HEAD
 // Branche A : Serveur Express principal
+=======
+// Branche B : Application Express
+>>>>>>> branche-b
 const express = require("express");
 const dotenv = require("dotenv");
 const connectDB = require("./config/database");
