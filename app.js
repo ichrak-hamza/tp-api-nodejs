@@ -1,17 +1,14 @@
-const express = require('express');
-const dotenv = require('dotenv');
-
-dotenv.config();
+// app.js — définit l'application, ne démarre rien
+const express = require("express");
+const etudiantRoutes = require("./routes/etudiantRoutes");
 
 const app = express();
 app.use(express.json());
 
-// routes
-const etudiantRoutes = require('./routes/etudiantRoutes');
-app.use('/api/etudiants', etudiantRoutes);
-
-// server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+app.get("/", (req, res) => {
+  res.json({ message: "API Gestion Étudiants v1.0" });
 });
+
+app.use("/api/etudiants", etudiantRoutes);
+
+module.exports = app;
