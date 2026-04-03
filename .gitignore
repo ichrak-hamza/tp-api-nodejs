@@ -1,6 +1,6 @@
 # Dépendances Node.js (trop volumineux, installable via npm install)
 node_modules/
-
+coverage/
 # Variables d'environnement (contient des données sensibles)
 .env
 
