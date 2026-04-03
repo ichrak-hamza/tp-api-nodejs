@@ -21,6 +21,7 @@ function calculMention(moyenne) {
   if (!isValidMoyenne(moyenne)) {
     throw new Error("La moyenne doit être comprise entre 0 et 20");
   }
+  // Remettez :
   if (moyenne >= 16) return "Très Bien";
   if (moyenne >= 14) return "Bien";
   if (moyenne >= 12) return "Assez Bien";
